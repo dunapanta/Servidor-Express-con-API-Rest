@@ -1,0 +1,22 @@
+npm install express --save
+npm install --save-dev nodemon
+npm i typescript --save-dev
+npm i concurrently --save-dev
+npm install @types/express
+
+tsc --init
+"start": "nodemon build/index.js",
+"build": "tsc --watch --preserveWatchOutput",
+"dev": "concurrently \"npm run build\" \"npm start\" ",
+
+Configuro tsconfig
+"target": "es6",  
+"outDir": "./build",
+"rootDir": "./src",
+
+configuro index.js
+
+npm run dev
+
+Añado rutas
+
