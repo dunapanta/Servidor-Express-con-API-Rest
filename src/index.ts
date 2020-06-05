@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import shopRoutes from './routes/shop';
+import mongooseDriver from 'mongoose';
 
 const app = express();
 
@@ -20,5 +21,12 @@ app.use((req, res, next) => {
 
 app.use('/admin', shopRoutes);
 
+mongooseDriver.connect("mongodb+srv://daniel:WGLZHM48j4kvXcz5@clasemongo-1u8oi.mongodb.net/ecomerce_db?retryWrites=true&w=majority")
+.then(() => {
+    console.log("Coneccion con la BD Establecida");
+    app.listen(8080, () => { console.log("Escuchando sobre el puerto 8080"); });
+}).catch(err => {
+    console.log("Error", err)
+})
 
-app.listen(8080, () => { console.log("Escuchando sobre el puerto 8080"); });
+
