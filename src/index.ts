@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import authRoutes from './routes/auth';
 import shopRoutes from './routes/shop';
 import mongooseDriver from 'mongoose';
 import env from 'dotenv';
@@ -25,7 +26,9 @@ app.use((req, res, next) => {
 //application/x-www-form-urlencoded
 // app.use(bodyParser.urlencoded()); 
 
+app.use(authRoutes);
 app.use('/admin', shopRoutes);
+
 
 mongooseDriver.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@clasemongo-1u8oi.mongodb.net/ecomerce_db?retryWrites=true&w=majority`)
 .then(() => {
